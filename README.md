@@ -3,7 +3,7 @@
 <h3>Refazendo projetos simples para fixar melhor alguns conhecimentos de lógica de programação.</h3>
 
 <img src="https://giffiles.alphacoders.com/219/219338.gif">
-<p>Neste projetos podemos encontrar um sorteador de números, imaginando um cénario Web onde foi necessário o uso de HTML, CSS e JavaScript.</p><br>
+<p>Neste projetos podemos encontrar um sorteador de números simples usando Math.random e alguns outros pequenos parâmentros, imaginando um cénario Web onde foi necessário o uso de HTML, CSS e JavaScript.</p><br>
 
 # Time
 
