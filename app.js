@@ -3,64 +3,54 @@ function sortear(){
     let de = parseInt(document.getElementById("de").value);
     let ate = parseInt(document.getElementById("ate").value);
 
-    let sorteados = [];
-    let numero
+    let listaDeSorteados = [];
+    let numero;
 
     for(let i = 0; i < quantidade; i++){
-        numero = obterNumeroAleatorio(de, ate);
+        numero = sortearNumero(de, ate);
 
-        while(sorteados.includes(numero)){
-            numero = obterNumeroAleatorio(de, ate);
+        while(listaDeSorteados.includes(numero)){
+            numero = sortearNumero(de, ate);
         }
 
-        sorteados.push(numero);
+        listaDeSorteados.push(numero);
+
     }
-
-    let frasePlural = quantidade > 1 ? `<label class="texto__paragrafo">Números sorteados:  Os números sorteados foram ${sorteados}.</label>` : `<label class="texto__paragrafo">Números sorteados:  O número sorteado foi ${sorteados}.</label>`
-
-    exibirTexto("resultado", frasePlural );
-
     alterarStatusBotao("btn-reiniciar");
     alterarStatusBotao("btn-sortear");
 
+    let pluralSorteados = quantidade > 1 ? "Os números sorteados foram" : "O número sorteado foi";
+
+    exibirTextoNaTela("resultado", `<label class="texto__paragrafo">${pluralSorteados}:   ${listaDeSorteados}</label>`);
 }
 
-function obterNumeroAleatorio(min, max){
-    return parseInt(Math.random() * (max - min + 1) + min);
-
-}
-
-function exibirTexto(tag, texto){
+function exibirTextoNaTela(tag, texto){
     let campo = document.getElementById(tag);
     campo.innerHTML = texto;
 }
 
-function reiniciar(){
-     exibirTexto("resultado",`<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>` );
-     sorteados = [];
-     apagarCampo(quantidade);
-     apagarCampo(de)
-     apagarCampo(ate);
-     alterarStatusBotao("btn-sortear");
-     alterarStatusBotao("btn-reiniciar");
-
+function sortearNumero(min, max){
+    return parseInt(Math.random() * (max - min) + min);
 }
 
 function alterarStatusBotao(idBotao){
     let botao = document.getElementById(idBotao);
-    if(botao.classList.contains('container__botao-desabilitado')){
-        botao.classList.remove('container__botao-desabilitado');
-        botao.classList.add('container__botao');
 
+    if(botao.classList.contains("container__botao-desabilitado")){
+        botao.classList.remove("container__botao-desabilitado");
+        botao.classList.add("container__botao");
     }else{
-        botao.classList.remove('container__botao');
-        botao.classList.add('container__botao-desabilitado');
-
+        botao.classList.add("container__botao-desabilitado");
+        botao.classList.remove("container__botao");
     }
-
 }
 
-function apagarCampo(numeroDigitado){
-    numeroDigitado.value = "";
+function reiniciar(){
+    document.getElementById("quantidade").value = "";
+    document.getElementById("de").value = "";
+    document.getElementById("ate").value = "";
+    exibirTextoNaTela("resultado", `<label class="texto__paragrafo">Escolha algum número para sortear! 😎</label>`);
+    alterarStatusBotao("btn-reiniciar");
+    alterarStatusBotao("btn-sortear");
 
 }
